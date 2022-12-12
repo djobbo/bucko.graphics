@@ -35,9 +35,9 @@ import {HiChevronDown} from 'react-icons/hi2/index.js'
     <div class="absolute top-0 right-0 bottom-0 flex gap-12 mt-8">
         {Array.from({length: 2}, (_, col) => 
             <div class:list={[{
-                '-mt-28': col === 0,
+                'mt-28': col !== 0,
             }]}>
-                {Array.from({length: 3}, (_, i) => 
+                {Array.from({length: 4}, (_, i) => 
                     <div class:list={[
                         "logo-card bg-bg flex items-center justify-center w-56 h-56 shadow-md",
                         "hover:text-secondary hover:scale-105 transition",
