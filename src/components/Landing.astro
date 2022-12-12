@@ -5,7 +5,7 @@ import {SiTwitter, SiInstagram} from 'react-icons/si/index.js'
 import {HiChevronDown} from 'react-icons/hi2/index.js'
 ---
 
-<section class="landing relative overflow-hidden flex flex-col justify-between items-center">
+<section id="landing" class="landing relative overflow-hidden flex flex-col justify-between items-center">
     <div class="relative w-full max-w-screen-xl flex flex-col justify-center flex-1 gap-12">
         <h1 class="font-bold text-7xl">
             Nous prenons soin<br/>de <span class="text-primary">votre</span> image!
@@ -32,7 +32,7 @@ import {HiChevronDown} from 'react-icons/hi2/index.js'
             </li>
         </ul>
     <!-- desktop logos -->
-    <div class="absolute top-0 right-0 bottom-0 flex gap-12 mt-8">
+    <div id="logos-container" class="absolute top-0 right-0 bottom-0 flex gap-12 mt-8">
         {Array.from({length: 2}, (_, col) => 
             <div class:list={[{
                 'mt-28': col !== 0,
@@ -79,3 +79,30 @@ import {HiChevronDown} from 'react-icons/hi2/index.js'
         box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.08);
     }
 </style>
+<script>
+import
+ { clamp } from '../helpers/math'
+
+    let landingSection: HTMLElement | null = null
+    let logosContainer: HTMLDivElement | null = null
+
+    const onScroll = () => {
+        if (!landingSection || !logosContainer) return
+        const landingHeight = landingSection.clientHeight
+        const containerHeight = logosContainer.scrollHeight
+
+        const maxOffset = containerHeight - landingHeight
+        if (maxOffset < 0) return
+        
+        let y = clamp(window.scrollY / window.innerHeight, 0, 1)
+
+        logosContainer.style.transform = `translateY(-${y * maxOffset}px)`
+    }
+
+    window.addEventListener('load', () => {
+        landingSection = document.getElementById('landing')
+        logosContainer = document.getElementById('logos-container') as HTMLDivElement
+    })
+
+    window.addEventListener('scroll', onScroll)
+</script>
