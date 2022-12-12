@@ -1,0 +1,39 @@
+---
+import BuckoTextLogo from "./BuckoTextLogo.astro"
+import LinkButton from "./LinkButton.astro"
+const {url} = Astro
+
+const {pathname} = new URL(url)
+
+type Link = {
+    href: string
+    label: string
+}
+
+const links: Link[] = [
+    {href: '/', label: 'Accueil'},
+    {href: '/work', label: 'Travaux'},
+    {href: '/about', label: 'À Propos'},
+]
+---
+
+<header class="flex justify-between items-center w-full h-24 px-16">
+    <div><BuckoTextLogo /></div>
+    <nav>
+        <ul class="flex items-center gap-8">
+            {
+                links.map(({href, label}) => {
+                    const isActive = pathname === href
+                    return (
+                    <li><a href={href} class:list={[{'font-bold': isActive}]}>{label}</a></li>
+                    )
+                })
+            }
+            <li>
+                <LinkButton href='/contact'>
+                    Nous Contacter
+                </LinkButton>
+            </li>
+        </ul>
+    </nav>
+</header>

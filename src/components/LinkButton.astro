@@ -1,0 +1,17 @@
+---
+import type {HTMLAttributes} from 'astro/types'
+
+export type Props = HTMLAttributes<"a"> & {
+    hollow?: boolean
+}
+
+const {class: className, "class:list": classList, hollow, ...props} = Astro.props
+
+---
+
+<a {...props} class:list={['block px-4 py-3 rounded-lg border', {
+    'bg-text text-bg border-transparent': !hollow,
+    'bg-transparent text-text border-text': hollow,
+}, className, classList]}>
+    <slot/>
+</a>
