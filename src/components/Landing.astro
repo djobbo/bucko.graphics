@@ -3,6 +3,39 @@ import BuckoLogo from '../logos/BuckoLogo.astro';
 import LinkButton from './LinkButton.astro'
 import {SiTwitter, SiInstagram} from 'react-icons/si/index.js'
 import {HiChevronDown} from 'react-icons/hi2/index.js'
+import MustacheLogo from '../logos/MustacheLogo.astro';
+import CorehallaLogo from '../logos/CorehallaLogo.astro';
+import LudopodLogo from '../logos/LudopodLogo.astro';
+import GenesysLogo from '../logos/GenesysLogo.astro';
+import MegapixelArtLogo from '../logos/MegapixelArtLogo.astro';
+
+const logos = [[
+    {
+        name: 'BuckoGraphics',
+        Logo: BuckoLogo,
+    },
+    {
+        name: 'Mustache',
+        Logo: MustacheLogo,
+    },
+    {
+        name: 'Corehalla',
+        Logo: CorehallaLogo,
+    },
+], [
+    {
+        name: 'Genesys',
+        Logo: GenesysLogo,
+    },
+    {
+        name: 'Ludopod',
+        Logo: LudopodLogo,
+    },
+    {
+        name: 'MegapixelArt',
+        Logo: MegapixelArtLogo,
+    },
+]]
 ---
 
 <section id="landing" class="landing relative overflow-hidden flex flex-col justify-between items-center">
@@ -31,26 +64,26 @@ import {HiChevronDown} from 'react-icons/hi2/index.js'
                 </a>
             </li>
         </ul>
-    <!-- desktop logos -->
-    <div id="logos-container" class="absolute top-0 right-0 bottom-0 flex gap-12 mt-8">
-        {Array.from({length: 2}, (_, col) => 
-            <div class:list={[{
-                'mt-28': col !== 0,
-            }]}>
-                {Array.from({length: 4}, (_, i) => 
-                    <div class:list={[
-                        "logo-card bg-bg flex items-center justify-center w-56 h-56 shadow-md",
-                        "hover:text-secondary hover:scale-105 transition",
-                        {
-                            'mt-12': i !== 0,
-                        }
-                    ]}>
-                        <BuckoLogo />
-                    </div>
-                )}
-            </div>
-        )}
-    </div>
+        <!-- desktop logos -->
+        <div id="logos-container" class="absolute top-0 right-0 bottom-0 flex gap-12 mt-8">
+            {logos.map((logoCol, col) => 
+                <div class:list={[{
+                    'mt-28': col !== 0,
+                }]}>
+                    {logoCol.map(({Logo}, i) => 
+                        <div class:list={[
+                            "logo-card bg-bg flex items-center justify-center w-56 h-56 shadow-md",
+                            "hover:text-secondary hover:scale-105 transition",
+                            {
+                                'mt-12': i !== 0,
+                            }
+                        ]}>
+                            <Logo />
+                        </div>
+                    )}
+                </div>
+            )}
+        </div>
     </div>
     <!-- figures -->
     <div class="w-full bg-bg1 px-8 py-8">
@@ -66,7 +99,7 @@ import {HiChevronDown} from 'react-icons/hi2/index.js'
         </div>
     </div>
 </section>
-<a href="#work" class="flex justify-center items-end gap-2 py-6">
+<a href="#about" class="flex justify-center items-end gap-2 py-6">
     <HiChevronDown className='w-4 h-4 animate-bounce'/> en savoir +
 </a>
 <style>
