@@ -2,20 +2,60 @@
 import Layout from '../layouts/Layout.astro';
 import Landing from '../components/Landing.astro';
 import About from '../components/About.md';
+import BuckoLogo from '../logos/BuckoLogo.astro';
+
+const services = [
+	{
+		name: 'Logo Design',
+		description: 'Nous créons votre Logo, afin que votre marque soit reconnue.'
+	},
+	{
+		name: 'Social Branding',
+		description: 'Design de bannières, photos de profil et autres pour vos réseaux sociaux.'
+	},
+	{
+		name: 'Emotes',
+		description: "Besoin d'Emotes pour votre chaine Twitch ou votre serveur discord? Vous êtes au bon endroit!"
+	},
+	{
+		name: 'Charte Graphique',
+		description: "Une charte graphique est un outil très important pour n'importe quel business, demandez nous!"
+	}
+]
 ---
 
 <Layout title="Bienvenue chez Bucko.">
 	<Landing />
-	<section id="about" class="pt-16 max-w-screen-xl mx-auto">
+	<section id="about" class="mt-16 max-w-screen-xl mx-auto">
 		<h2 class="text-3xl font-bold">Qui sommes nous?</h2>
-		<div class="py-8 leading-loose">
+		<div class="mt-8 leading-loose">
 			<About />
 		</div>
 	</section>
-	<section id="services" class="pt-16 max-w-screen-xl mx-auto">
+	<section id="services" class="mt-24 max-w-screen-xl mx-auto">
 		<h2 class="text-3xl font-bold">Nos services</h2>
-		<!-- <div class="py-8 leading-loose">
-			<About />
-		</div> -->
+		<ul class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
+			{services.map(service => (
+				<div class="service-card bg-gradient-to-r from-secondary to-primary rounded-lg border border-bg hover:border-outline overflow-hidden transition">
+					<li class="h-full group p-4 flex gap-4 bg-bg hover:bg-[#ffffffdd] transition">
+						<div class="service-icon w-12 h-12 bg-bg rounded-xl flex-shrink-0 border border-outline transition-all">
+							<BuckoLogo/>
+						</div>
+						<div>
+							<h3 class="text-2xl font-bold">{service.name}</h3>
+							<p class="mt-2 leading-relaxed">{service.description}</p>
+						</div>
+					</li>
+				</div>
+			))}
+		</ul>
 	</section>
 </Layout>
+<style>
+	.service-card:hover {
+        box-shadow: 0px 0px 1rem rgb(81, 113, 224, 0.08);
+	}
+	.service-card:hover .service-icon {
+        box-shadow: 0px 0px 2rem rgb(81, 113, 224, 0.20);
+	}
+</style>
