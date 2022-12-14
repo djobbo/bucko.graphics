@@ -1,0 +1,20 @@
+---
+import { ContactForm } from '../components/ContactForm';
+import Layout from '../layouts/Layout.astro';
+
+const services = [
+    { name: 'Logo' },
+    { name: 'Image de profil' },
+    { name: 'Bannière' },
+    { name: 'Emotes' },
+    { name: 'GIF' },
+    { name: 'Charte Graphique' },
+];
+---
+
+<Layout title="Contact - Bucko">
+    <h1 class="w-full max-w-screen-xl mx-auto font-bold text-5xl mb-8">
+        Un projet en tête?
+    </h1>
+    <ContactForm services={services} client:idle />
+</Layout>

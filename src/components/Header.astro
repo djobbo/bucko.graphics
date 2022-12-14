@@ -18,7 +18,9 @@ const links: Link[] = [
 ---
 
 <header class="flex justify-between items-center w-full h-24 px-16">
-    <div><BuckoTextLogo /></div>
+    <a href="/">
+        <BuckoTextLogo />
+    </a>
     <nav>
         <ul class="flex items-center gap-8">
             {
@@ -30,7 +32,7 @@ const links: Link[] = [
                 })
             }
             <li>
-                <LinkButton href='/contact'>
+                <LinkButton href='/contact' small>
                     Nous Contacter
                 </LinkButton>
             </li>
